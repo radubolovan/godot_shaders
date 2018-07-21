@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://white.shader" type="Shader" id=1]
+[ext_resource path="res://empty_tex.png" type="Texture" id=2]
+[ext_resource path="res://math.shader" type="Shader" id=3]
+[ext_resource path="res://math.gd" type="Script" id=4]
+[ext_resource path="res://axes_tex.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+
+render_priority = 0
+shader = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/the_color = Vector3( 0, 1, 0 )
+shader_param/PI = null
+shader_param/HALF_PI = null
+shader_param/colorA = null
+shader_param/colorB = null
+shader_param/colorC = null
+shader_param/colorD = null
+shader_param/colorE = null
+_sections_unfolded = [ "shader_param" ]
+
+[node name="root" type="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Offset", "Transform" ]
+
+[node name="white" type="Sprite" parent="." index="0"]
+
+material = SubResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Material", "Offset", "Transform" ]
+
+[node name="math" type="Sprite" parent="." index="1"]
+
+material = SubResource( 2 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 4 )
+_sections_unfolded = [ "Material", "Offset", "Transform" ]
+
+[node name="axes" type="Sprite" parent="." index="2"]
+
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[connection signal="item_rect_changed" from="white" to="white" method="calculate_aspect_ratio"]
+
+[connection signal="item_rect_changed" from="math" to="math" method="calculate_aspect_ratio"]
+
+
